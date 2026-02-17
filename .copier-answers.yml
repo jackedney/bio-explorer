@@ -1,0 +1,9 @@
+# Changes here will be overwritten by Copier
+_src_path: gh:jackedney/prothon
+project_name: bio-explorer
+module_name: bio_explorer
+description: A biodiversity exploration app demo
+author_name: Jack Edney
+author_email: jack.edney@demo.com
+python_version: 3.13
+license: MIT

@@ -1,0 +1,23 @@
+# bio-explorer
+
+A biodiversity exploration app demo
+
+## Setup
+
+```bash
+uv sync
+```
+
+## Development
+
+```bash
+poe check    # Run all quality checks
+poe fmt      # Format code
+poe lint     # Run linters
+poe test     # Run tests
+poe test-mut # Run mutation testing
+```
+
+---
+
+*Created with [prothon](https://github.com/jackedney/prothon).*

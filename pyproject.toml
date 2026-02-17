@@ -1,0 +1,93 @@
+[project]
+name = "bio-explorer"
+version = "0.1.0"
+description = "A biodiversity exploration app demo"
+requires-python = ">=3.13"
+
+license = "MIT"
+
+
+authors = [
+    { name = "Jack Edney", email = "jack.edney@demo.com" },
+]
+
+readme = "README.md"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bio_explorer"]
+
+[dependency-groups]
+dev = [
+    "poethepoet>=0.32",
+    "pytest>=8.0",
+    "hypothesis>=6.0",
+    "mutmut>=3.0",
+    "ruff>=0.15",
+    "ty>=0.0.17",
+    "bandit[toml]>=1.9",
+    "vulture>=2.14",
+    "complexipy>=5.0",
+    "pre-commit>=4.0",
+]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 88
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["I", "E", "F", "W", "UP", "B", "SIM", "N"]
+
+[tool.ty.environment]
+python-version = "3.13"
+root = ["src"]
+
+[tool.ty.rules]
+all = "warn"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+strict = true
+xfail_strict = true
+
+[tool.mutmut]
+paths_to_mutate = "src/bio_explorer/"
+tests_dir = "tests/"
+
+[tool.bandit]
+targets = ["src"]
+
+[tool.vulture]
+paths = ["src"]
+min_confidence = 80
+
+[tool.poe.tasks]
+install = { cmd = "uv sync", help = "Install dependencies" }
+fmt = { cmd = "uv run ruff format src/ tests/", help = "Format code" }
+security = { cmd = "uv run bandit -c pyproject.toml -r src/", help = "Run security checks only" }
+test = { cmd = "uv run pytest", help = "Run tests" }
+test-mut = { cmd = "uv run mutmut run", help = "Run mutation testing" }
+check = { sequence = ["lint", "test"], help = "Run all quality checks" }
+
+[tool.poe.tasks.lint]
+help = "Run all linters"
+
+[[tool.poe.tasks.lint.sequence]]
+cmd = "uv run ruff check src/ tests/"
+
+[[tool.poe.tasks.lint.sequence]]
+cmd = "uv run ty check"
+
+[[tool.poe.tasks.lint.sequence]]
+cmd = "uv run bandit -c pyproject.toml -r src/"
+
+[[tool.poe.tasks.lint.sequence]]
+cmd = "uv run vulture src/"
+
+[[tool.poe.tasks.lint.sequence]]
+cmd = "uv run complexipy src/"
