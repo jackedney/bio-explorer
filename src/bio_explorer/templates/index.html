@@ -4,8 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bio Explorer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/static/css/styles.css" />
 </head>
 <body>
-    <h1>Bio Explorer</h1>
+    <div id="search-bar">
+        <form id="search-form">
+            <input
+                type="text"
+                id="search-input"
+                placeholder="Search species by common or scientific name..."
+                autocomplete="off"
+            />
+        </form>
+        <div id="error-message"></div>
+    </div>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    <script src="/static/js/map.js"></script>
 </body>
 </html>

@@ -1,0 +1,48 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#search-bar {
+    padding: 8px 12px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    flex-shrink: 0;
+}
+
+#search-form {
+    display: flex;
+}
+
+#search-input {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+#search-input:focus {
+    border-color: #4a90d9;
+}
+
+#error-message {
+    display: none;
+    color: #c0392b;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+#map {
+    flex: 1;
+    width: 100%;
+}
